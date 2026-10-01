@@ -5,7 +5,7 @@ db::start(); // Memulai koneksi database
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     
-    // Menggunakan class db buatan temanmu untuk menghapus dari tabel ToDo
+    // Menggunakan class db untuk menghapus dari tabel ToDo
     db::delete('ToDo', 'id', $id);
     
     // Lempar balik ke halaman utama

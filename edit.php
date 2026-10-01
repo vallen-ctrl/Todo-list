@@ -1,5 +1,5 @@
 <?php
-require_once 'database.php';
+require_once 'database.php';  // Untuk koneksi database
 db::start(); 
 
 // 1. Pastikan ada ID tugas yang dikirim lewat URL
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data_update['tenggat'] = null; // Kosongkan tanggal jika dihapus user
     }
 
-    // Gunakan fungsi update buatan temanmu berdasarkan ID
+    // Fungsi update berdasarkan ID
     db::update('ToDo', $data_update, 'id', $id);
     
     // Lempar kembali ke halaman utama
@@ -81,7 +81,7 @@ if ($result_kategori) {
         </div>
         
         <form action="" method="POST" class="space-y-5">
-            <!-- Inject ID Tugas secara sembunyi (Hidden) -->
+            <!-- Inject ID Tugas secara sembunyi -->
             <input type="hidden" name="id" value="<?= $tugas['id'] ?>">
             
             <div>

@@ -1,12 +1,8 @@
 <?php
-require_once 'database.php';
+require_once 'database.php';   // Untuk koneksi database
 db::start(); 
 
-// =======================================================
-// SCRIPT PEMBERSIH & AUTO-GENERATE KATEGORI BAWAAN
-// =======================================================
-
-// Suntikkan kategori estetik bawaan ke database jika belum ada
+// Suntikkan kategori bawaan ke database jika belum ada
 $kategori_bawaan = [
     '🎓 Kuliah' => '#8b5cf6', // Ungu
     '💻 Project' => '#3b82f6', // Biru
@@ -20,9 +16,9 @@ foreach ($kategori_bawaan as $judul => $warna) {
     }
 }
 
-// =======================================================
+
 // 1. LOGIKA SIMPAN TUGAS (Method POST)
-// =======================================================
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $kategori_id = $_POST['category_id'];
@@ -51,9 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-// =======================================================
 // 2. LOGIKA TARIK DATA TUGAS & KATEGORI (Method GET)
-// =======================================================
+
 $sql_tugas = "SELECT ToDo.*, Category.judul AS nama_kategori, Category.color AS warna_kategori 
               FROM ToDo 
               LEFT JOIN Category ON ToDo.category = Category.id 
@@ -275,7 +270,7 @@ if ($result_kategori) {
         
         let previousCategoryValue = categorySelect.value;
 
-        function handleCategoryChange(select) {
+        function handleCategoryChange(select) {   
             if (select.value === 'add_new') openModal();
             else previousCategoryValue = select.value;
         }
@@ -295,6 +290,8 @@ if ($result_kategori) {
                 newCategoryColor.value = '#4f46e5';
             }, 200);
         }
+
+        // Simpan kategori baru
 
         function saveCategory() {
             const name = newCategoryName.value.trim();
